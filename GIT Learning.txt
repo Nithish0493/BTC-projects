@@ -1,0 +1,210 @@
+# To know the version of git
+git --version
+
+# It will show git help documentation
+git --help
+
+# To define the git Identity
+git config --global user.name "First Last"
+git config --global user.email "me@example.com"
+
+# To view the configuration
+git config --global --list
+
+
+git init - Start a new repository to enable versioning.
+git add - Group related changes together in the staging area, in preparation to "commit" them to history.
+git commit - Save or "commit" the changes in the staging area to the project's history.
+commit message - A short description of the changes to help keep the history organized.
+git status - View the current state of your working directory and staging area.
+git checkout - Change your working directory to a different version from the repository history.
+
+• git add <file_name> – Stages one specific file (e.g., git add README.md).
+• git add . – Stages everything (all new, modified, and deleted files) in your current folder and all subfolders.
+• git add *.md – Stages all Markdown files in the current folder at once.
+
+
+--------------------------------------------------------------------------------------------------
+# Navigate to project directory
+cd /path
+
+# Initialize a git repository
+git init
+
+# check the status of the repository
+git status
+
+# move to staging are before commit
+git add <file name>
+
+# Commit the changes
+git commit -m "commit message"
+
+--> 
+"git init will not make your project available on GitHub automatically.
+To make your local repository available on GitHub"
+
+1. Create new repository in Github
+
+2.GitHub will show you a page with a URL (looking like https://github.com).
+Run this command in your local terminal to create a bridge between your computer and GitHub
+
+git remote add origin https://github.com
+
+3. we push the main branch to the github
+git push -u origin main
+
+--------------------------------------------------------------------------------------------------------------
+--> git clone
+"git clone when a project already exists on GitHub (or another remote server), 
+and you want to download a complete copy of it onto your own computer to start working on it."
+
+# navigate to desired directory
+cd ~/Desktop
+
+
+# enter the project folder
+cd repository-name
+
+# create the branch
+git branch <branch name>
+
+# move to branch
+git checkout -b <branch name>
+
+# stage the files
+# To stage specific files:
+git add filename.txt
+
+# To stage ALL modified and new files at once:
+git add .
+
+# commit the file
+git commit -m "Add a descriptive message about what you changed"
+
+# push the changes to github
+git push origin my-feature-branch
+
+--> 
+"If someone else made changes directly to GitHub (or you updated it from another computer), your local repository is now outdated. 
+You need to pull those changes down to your computer before you continue working to avoid merge conflicts."
+
+# switch to main branch
+git checkout main
+
+# Run the pull command to automatically download the new changes from GitHub and merge them into your local files
+git pull origin main
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Display the history in various ways
+git log - Display a detailed history of the project.
+git log --oneline - Show one commit per line, but with less detail.
+git log --graph - Show a visual diagram, useful for diverging paths.
+git log --all --graph --oneline
+
+
+# checkout to earlier version
+git checkout <commit id>
+
+#  Switch back to your main branch
+git checkout main
+
+----------------------------------------------------------------------------------------------------------------------
+Git uses symbols and coloring to show file changes:
+
++ in green indicates lines that were added
+- in red indicates lines that were removed
+
+# You can change Git's default comparison colors with the below commands.
+git config --global color.diff.old yellow
+git config --global color.diff.new blue
+
+-----------------------------------------------------------------------------------------------------------------------
+The git diff command shows differences between development states.
+
+git diff - Differences between the working directory and the staging area.
+git diff --staged - Differences between staging area and previous commit.
+git diff HEAD~1 - Differences between current commit and previous commit.
+
+
+--> View the difference between your working directory and the last commit.
+git diff <file path>
+
+--> Promote the changes into the staging area.
+git add <file path>
+
+--> Run the same comparison again. Notice that no changes are displayed, because the working directory now matches the staging area.
+git diff <file path>
+
+git commit -m "Commit message"
+
+---------------------------------------------------------------------------------------------------------------------------
+
+main Branch: Usually the trusted working version, and the first branch. (historically called master)
+Feature Branch: A safe isolated space to develop without affecting the trusted version.
+Merging: Combining changes from different branches.
+
+1. Fast-forward merge: Move the new commits from the child branch onto the parent branch.
+2. Merge commit: Apply the changes as a single new commit on the parent branch. Leave the child branch in the network for traceability.
+3. Squash merge: Collapse the commits from one branch into a single new commit on the other branch.
+
+git checkout can be used in two ways:
+
+1. Switching Branches
+   eg: git checkout login-page
+
+3. Recalling past versions
+   eg: git checkout <commit-hash> index.html
+----------------------------------------------------------------------------------------------------------------------------=
+
+# create branch
+git branch <branch name>
+
+# switch to branch
+git checkout <branch name>
+
+# list all the branches
+git branch --list
+
+git add <filename>
+git commit -m "feature added"
+
+# switch to main
+git checkout main
+
+# 2. Merge the work from your feature branch into main
+git merge <branch name>
+git merge --no-ff <branch name> -m "Feature added"
+
+# 3. Push your updated local main branch straight to GitHub main
+git push origin main
+
+# delete the branch
+git branch --delete <branch name>
+
+# rename the current branch
+git branch -m <new-name>
+
+# rename the different branch
+
+
+
+--> collaboration
+
+--> during git pull 
+
+"If both of you edited the exact same 2 lines, Git gets confused. It doesn't know whose code is the "correct" version, 
+so it pauses the pull and creates a Merge Conflict."
+
+<<<<<<< HEAD
+    <p>This is my new local version of the text.</p>
+=======
+    <p>This is the coworker's version from GitHub.</p>
+>>>>>>> 1a2b3c4f... (coworker's commit hash)
+
+--->
+Discuss with co-worker and decide which version to use.clear the merge conflict write correct code and commit.
+then push the code to github.
+<---
+
